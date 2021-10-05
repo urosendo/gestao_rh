@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('apps.core.urls')),
     path('funcionarios/', include('apps.funcionarios.urls') ),
     path('empresa/', include('apps.empresas.urls') ),
     path('departamentos/', include('apps.departamentos.urls') ),
-    path('documentos/', include('apps.documentos.urls') ),
     path('hora-extras/', include('apps.registro_hora_extra.urls') ),
-    path('', include('apps.core.urls')),
+    path('documentos/', include('apps.documentos.urls')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
