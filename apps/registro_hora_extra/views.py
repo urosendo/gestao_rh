@@ -34,4 +34,3 @@ class HoraExtraCreate(CreateView):
         return kwargs
 
 
-    git filter - branch - -env - filter if ["$GIT_AUTHOR_NAME" = "Ullysses"] then export GIT_AUTHOR_NAME="Ullysses" GIT_AUTHOR_EMAIL="urozendo@gmail.com" fi
