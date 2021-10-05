@@ -7,4 +7,4 @@ from apps.funcionarios.models import Funcionario
 def home(request):
     data = {}
     data['usuario'] = request.user
-    return render(request, 'core\index.html', data)
+    return render(request, 'core/index.html', data)
