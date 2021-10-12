@@ -1,21 +1,37 @@
 {% extends 'base.html' %}
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 
 {% block main %}
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{form|bootstrap}}
-  <button type="submit">Salvar</button>
+  {{form|crispy}}
+  <button type="submit" class="btn btn-success">Salvar</button>
 
 </form>
 <br>
 {% if object %}
+
+<h3>Documentos </h3>
+
 <a href="{% url 'create_documento' object.id %}" class="btn btn-info">Adicionar Documento</a>
 <br>
 {% for documento in object.documento_set.all %}
 <a href="{{documento.arquivo.url}}">{{documento}} </a> <br>
 {% endfor %}
+
+
+<h3>Banco de Horas</h3>
+<a href="{% url 'create_hora_extra' %}" class="btn btn-info">Adicionar Hora Extra</a>
+<ul>
+
+{% for registro_hora in object.registrohoraextra_set.all %}
+<li>{{registro_hora.motivo}} | {{registro_hora.horas}}</li>
+{% endfor %}
+</ul>
+
 {% endif %}
+
+
 
 
 {% endblock %}

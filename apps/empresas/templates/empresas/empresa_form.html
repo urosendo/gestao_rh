@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
-{% load bootstrap %}
-
+{% load crispy_forms_tags %}
 
 {% block main %}
 <form method="post">
   {% csrf_token %%}
-  {{form|bootstrap}}
-  <button type="submit">Salvar</button>
+  {{form|crispy}}
+  <button type="submit" class="btn btn-success">Salvar</button>
 </form>
 
 
