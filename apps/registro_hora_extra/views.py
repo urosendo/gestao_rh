@@ -19,6 +19,15 @@ class HoraExtraEdit(UpdateView):
     fields = ['motivo','funcionario','horas']
 
 
+class HoraExtraEdit_base(UpdateView):
+    model = RegistroHoraExtra
+    fields = ['motivo','funcionario','horas']
+    #success_url = reverse_lazy('list_hora_extra')
+
+    def get_success_url(self):
+        return reverse_lazy('update_hora_extra_base', args=[self.object.pk])
+
+
 class HoraExtraDelete(DeleteView):
     model = RegistroHoraExtra
     success_url = reverse_lazy('list_hora_extra')

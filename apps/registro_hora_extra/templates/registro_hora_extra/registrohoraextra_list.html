@@ -5,7 +5,7 @@
 <h1>Banco de Horas</h1>
 
 {% for horaextra in object_list %}
-<a href="{% url 'update_hora_extra' horaextra.id %}">
+<a href="{% url 'update_hora_extra_base' horaextra.id %}">
     {{horaextra}}
 </a>
 
