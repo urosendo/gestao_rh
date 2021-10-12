@@ -1,3 +1,6 @@
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -5,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 from .models import RegistroHoraExtra
 from .forms import RegistroHoraExtraForm
+from django.views import View
 
 class HoraExtraList(ListView):
     model = RegistroHoraExtra
@@ -43,3 +47,26 @@ class HoraExtraCreate(CreateView):
         return kwargs
 
 
+class UtilizouHoraExtra(View):
+
+    def post(self, *args, **kwargs):
+
+        registro_hora_extra = RegistroHoraExtra.objects.get(id=kwargs['pk'])
+        if registro_hora_extra.utilizada == False:
+            registro_hora_extra.utilizada = True
+            label_button = 'Marcar como não utilizada'
+        else:
+            registro_hora_extra.utilizada = False
+            label_button = 'Marcar como utilizada'
+
+        registro_hora_extra.save()
+
+        empregado = self.request.user.funcionario
+
+
+        response = json.dumps(
+            {'mensagem':'Requisição Executada 2',
+             'horas':float(empregado.total_horas_extra),
+             'label_button':label_button})
+
+        return HttpResponse(response, content_type='application/json')

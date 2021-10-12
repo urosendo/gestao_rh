@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block main %}
@@ -10,6 +11,27 @@
   <a href="{% url 'delete_hora_extra' object.id %}" class="btn btn-danger">
     Deletar
   </a>
+
+<!--  <input type="text" id="valor_teste">-->
+
+  <button id="button_marcador" onclick="utilizouHoraExtra({{object.id}})"
+          type="button" class="btn btn-sucess">
+
+    {% if object.utilizada %} Marcar como não utilizado {% else %} Marcar como utilizado {% endif %}
+  </button>
+
   {% endif %}
 </form>
+
+<h2 id="horas_atualizadas">{{object.funcionario.total_horas_extra}}</h2>
+<p id="mensagem"></p>
+
+{% endblock %}
+
+
+
+{% block javascript %}
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/funcoes-ajax.js' %}"></script>
 {% endblock %}
